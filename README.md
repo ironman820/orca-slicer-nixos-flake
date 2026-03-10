@@ -32,14 +32,14 @@ git clone <your-fork-or-local-copy> ~/src/orca-slicer-nixos-flake
 
 ```nix
 {
-	inputs = {
-		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-		orca-slicer = {
-			url = "path:/home/your-user/src/orca-slicer-nixos-flake";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
-	};
+    orca-slicer = {
+      url = "path:/home/your-user/src/orca-slicer-nixos-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 }
 ```
 
@@ -49,9 +49,9 @@ For NixOS:
 
 ```nix
 {
-	environment.systemPackages = [
-		inputs.orca-slicer.packages.x86_64-linux.orca-slicer
-	];
+  environment.systemPackages = [
+    inputs.orca-slicer.packages.x86_64-linux.orca-slicer
+  ];
 }
 ```
 
@@ -59,9 +59,9 @@ For Home Manager:
 
 ```nix
 {
-	home.packages = [
-		inputs.orca-slicer.packages.x86_64-linux.orca-slicer
-	];
+  home.packages = [
+    inputs.orca-slicer.packages.x86_64-linux.orca-slicer
+  ];
 }
 ```
 
@@ -69,11 +69,11 @@ If you prefer overlays instead of referencing the package directly:
 
 ```nix
 {
-	nixpkgs.overlays = [ inputs.orca-slicer.overlays.default ];
+  nixpkgs.overlays = [ inputs.orca-slicer.overlays.default ];
 
-	environment.systemPackages = with pkgs; [
-		orca-slicer
-	];
+  environment.systemPackages = with pkgs; [
+    orca-slicer
+  ];
 }
 ```
 
