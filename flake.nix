@@ -9,8 +9,8 @@
       pkgs = import nixpkgs { inherit system; };
 
       orcaSrc = {
-        version = "2.3.2-rc2";
-        srcHash = "sha256-0W42k32h14qfZ2vaRBD5AHw0/mI/dLAzDfr2/t2mnZs=";
+        version = "2.3.2";
+        srcHash = "sha256-c1WTODLrXGtyJWkEueOz5jHhPbA/JFcMeAwhpvoKnKo=";
       };
 
       orca-slicer = pkgs.callPackage ./package.nix {
