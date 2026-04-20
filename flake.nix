@@ -1,12 +1,20 @@
 {
   description = "Orca Slicer package flake (based on nixpkgs orca-slicer)";
 
-  inputs = { nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11"; };
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+  };
 
-  outputs = { self, nixpkgs }:
+  outputs =
+    { self, nixpkgs }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+        config.permittedInsecurePackages = [
+          "ilmbase-2.5.10"
+        ];
+      };
 
       orcaSrc = {
         version = "2.3.2";
@@ -17,7 +25,8 @@
         orcaVersion = orcaSrc.version;
         orcaSrcHash = orcaSrc.srcHash;
       };
-    in {
+    in
+    {
       packages.${system} = {
         default = orca-slicer;
         orca-slicer = orca-slicer;
